@@ -1,11 +1,13 @@
 from pyrogram import Client, filters
 from pyromod import listen
 from pyrogram.types import Message
+import os
+
 
 bot = Client("bot",
-             bot_token= "your _bot token", 
-             api_id= , #api
-             api_hash= "harsh")
+             bot_token= os.environ.get("TG_BOT_TOKEN", ""), 
+             api_id= int(os.environ.get("APP_ID", 12345)), #api
+             api_hash= os.environ.get("API_HASH"))
 
 @bot.on_message(filters.command(["add"]))
 async def add(bot: Client, m: Message):
